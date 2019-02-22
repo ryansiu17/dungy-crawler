@@ -1,18 +1,14 @@
 import React, { Component } from "react";
 import "./App.scss";
-import NavBar from "./NavBar";
-import ScreenTest from "./screens/ScreenTest";
+
+import Button from "./components/Button";
+
 class App extends Component {
-  state = {
-    name: ""
-  };
   render() {
     return (
       <div className="app">
-        <div className="gameScreen">
-          <ScreenTest />
-          <NavBar />
-        </div>
+        <Button>Hello</Button>
+        <Button>Goodbye</Button>
       </div>
     );
   }
