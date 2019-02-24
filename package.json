@@ -5,6 +5,7 @@
   "dependencies": {
     "@axetroy/react-download": "^1.1.1",
     "node-sass": "^4.11.0",
+    "polished": "^3.0.0",
     "react": "^16.8.2",
     "react-bulma": "0.0.1",
     "react-dom": "^16.8.2",
