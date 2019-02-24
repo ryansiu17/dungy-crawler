@@ -1,11 +1,20 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
+const Text = styled.span`
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  z-index: 1;
+`;
+
 const ProgressPart = styled.div`
   background-color: ${props => props.defColor || props.theme.primaryBackground};
   border-radius: 4px 4px 4px 4px;
   width: ${props => (props.value * 100) / props.total}%;
   height: 0.6rem;
+  text-align: center;
 `;
 ProgressPart.defaultProps = {
   theme: {
@@ -19,6 +28,9 @@ const ProgressBackground = styled.div`
   border-radius: 5px 4px 4px 5px;
   width: auto;
   margin: 0.1rem;
+  font-size: 0.5rem;
+  color: white;
+  position: relative;
 `;
 
 ProgressBackground.defaultProps = {
@@ -35,7 +47,11 @@ class Progress extends Component {
           value={this.props.value}
           total={this.props.total}
           defColor={this.props.color}
-        />
+        >
+          <Text>
+            {this.props.value}/{this.props.total}
+          </Text>
+        </ProgressPart>
       </ProgressBackground>
     );
   }
