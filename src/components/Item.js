@@ -2,19 +2,26 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 import Image from "./Image";
-import Progress from "./Progress";
 
 const Wrapper = styled.div`
   width: ${props => props.size}rem;
 `;
-class Monster extends Component {
+const ImageBox = styled.img`
+  height: ${props => props.size}rem;
+`;
+class Item extends Component {
   render() {
     return (
       <Wrapper size={this.props.size}>
-        <Image {...this.props}>{this.props.children}</Image>
-        <Progress {...this.props} />
+        <Image height={this.props.height} {...this.props}>
+          {this.props.children}
+        </Image>
       </Wrapper>
     );
   }
 }
-export default Monster;
+export default Item;
+
+Item.defaultProps = {
+  height: 1
+};
