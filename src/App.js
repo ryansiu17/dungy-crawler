@@ -8,7 +8,29 @@ import Progress from "./components/Progress";
 import Image from "./components/Image";
 import Monster from "./components/Monster";
 import Item from "./components/Item";
+import makeItem from "./constants/Helpers";
 class App extends Component {
+  state = {
+    inventory: []
+  };
+  makeItem = () => {
+    const damage = Math.floor(Math.random() * 10) + 1;
+    const weight = Math.floor(Math.random() * 3) + 1;
+    const newItem = {
+      name: "sword",
+      damage: damage,
+      rank: "legendary",
+      weight: weight
+    };
+    return newItem;
+  };
+  addItemToInventory = item => {
+    console.log(item);
+    const newInv = [...this.state.inventory, item];
+    this.setState({
+      inventory: newInv
+    });
+  };
   render() {
     return (
       <div className="app">
@@ -16,8 +38,13 @@ class App extends Component {
           Slime
         </Image>
         <Progress color={"red"} value={3} total={10} />
-        <Button>Hello</Button>
-        <Button color="seagreen">Goodbye</Button>
+        <Button onClick={() => console.log(this.state.inventory)}>Hello</Button>
+        <Button
+          color="seagreen"
+          onClick={() => this.addItemToInventory(this.makeItem())}
+        >
+          Goodbye
+        </Button>
         <Button>Good Morning</Button>
         <Button color="darkslategray">AHHHHHHHHHHHHHHHHH</Button>
         <Monster
@@ -30,8 +57,15 @@ class App extends Component {
         >
           Slime
         </Monster>
-        <Item color={"dodgerblue"} size={4} src={sword} alt={"sword"} />
-        <Item color={"dodgerblue"} size={4} src={shortsword} alt={"sword"} />
+        {this.state.inventory.map(x => (
+          <Item
+            color={"dodgerblue"}
+            weapon={x}
+            size={4}
+            src={sword}
+            alt={"sword"}
+          />
+        ))}
       </div>
     );
   }
