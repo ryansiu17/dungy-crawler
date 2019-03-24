@@ -9,25 +9,28 @@ const Wrapper = styled.div`
 
 const Tooltip = styled.div`
   opacity: 0;
+  display: none;
   border-radius: 4px;
-  height: ${props => props.size * 1.5}rem;
-  width: ${props => props.size * 1.5}rem;
+  min-height: ${props => props.size * 1.5}rem;
+  min-width: ${props => props.size * 1.5}rem;
   margin: 0.1rem;
   margin-left: ${props => props.size + 0.3}rem;
+  padding-right: 0.3rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   position: absolute;
   background-color: black;
   z-index: 3;
   font-size: 0.8rem;
   color: white;
-  transition: opacity 0.3s;
+  transition: all 0.3s;
   ${Wrapper}:hover & {
     opacity: 1;
+    display: block;
   }
 `;
 
 const Stat = styled.p`
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.13rem;
   margin-left: 0.2rem;
 `;
 class Item extends Component {
@@ -37,9 +40,10 @@ class Item extends Component {
         <Tooltip size={this.props.size}>
           {this.props.weapon && (
             <div>
+              <Stat>Lvl. {this.props.weapon.level}</Stat>
               <Stat>{this.props.weapon.name || "noname"}</Stat>
-              <Stat>dmg: {this.props.weapon.damage || 0}</Stat>
-              <Stat>wgt: {this.props.weapon.weight || 0}</Stat>
+              <Stat>dmg - {this.props.weapon.damage || 0}</Stat>
+              <Stat>wgt - {this.props.weapon.weight || 0}</Stat>
             </div>
           )}
         </Tooltip>

@@ -3,5 +3,67 @@
 #	Items    32x32 Scaled x6.0 to 192x192	
 
 
+#LEVEL CUTOFFS
+#0 1-10
+#1 11-18
+#2 19-25
+#3 26-30
+#4 30-40
+#5 41-
+#6 ENCOMPASSES ALL
 
 
+#STATE
+
+# SAVE
+#    PLAYER
+#       TOTAL EXP / LEVEL
+#       STATS
+#          STRENGTH base + weapon + inv
+#          SPEED base + weapon + inv
+#          HEALTH base + weapon + 
+# 	INVENTORY
+# 	   16 SLOTS FOR ALL EQUIPMENT
+#	EQUIPPED ITEM STATS
+#          EQUIPPED GEAR
+#             HELMET
+#             CHEST/LEGS
+#             BOOTS
+#             RING
+#             AMULET
+#             MELEE
+#             SHIELD    
+
+
+#WEAPON RANKS
+#0 COMMON
+#1 UNCOMMON
+#2 RARE
+#3 EPIC
+#4 HEROIC
+#5 LEGENDARY OR DEMONIC
+#6 MAGIC
+
+#WEAPON TYPES
+#1 SHORTSWORD
+#2 GREATSWORD
+#3 
+#4
+#5 WARAXE
+#6 GREATAXE
+#7
+#8
+#9
+#10
+#11
+#12
+#13
+#14
+#15
+#16
+#17
+#18
+#19
+#20 SHIELD T1
+#21 SHIELD T2
+#22 SHIELD T3
