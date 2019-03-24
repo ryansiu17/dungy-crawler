@@ -29,9 +29,11 @@ class Image extends Component {
           src={this.props.src}
           alt={this.props.alt}
         />
-        <ImageFooter height={this.props.height}>
-          {this.props.children}
-        </ImageFooter>
+        {this.props.footer && (
+          <ImageFooter height={this.props.height}>
+            {this.props.children}
+          </ImageFooter>
+        )}
       </Wrapper>
     );
   }
@@ -39,5 +41,6 @@ class Image extends Component {
 export default Image;
 
 Image.defaultProps = {
-  size: 5
+  size: 5,
+  footer: true
 };
