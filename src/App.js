@@ -23,6 +23,9 @@ class App extends Component {
     console.log(this.getRank(31));
     console.log(this.getRank(41));
   }
+  roll = outOf => {
+    return Math.floor(Math.random() * outOf);
+  };
   getRank = level => {
     return level >= 0 && level <= 10
       ? 0
@@ -36,16 +39,22 @@ class App extends Component {
       ? 4
       : 5;
   };
+
+  getModifier = rank => {
+    const chance = this.roll(100);
+    return chance <= 40 + 5 * rank
+      ? weaponAdjectives[rank][
+          Math.floor(Math.random() * weaponAdjectives[rank].length)
+        ]
+      : false;
+  };
   makeWeapon = level => {
     const rank = this.getRank(level);
-    const name = `${
-      weaponAdjectives[rank][
-        Math.floor(Math.random() * weaponAdjectives.length)
-      ]
-    } sword`;
-    const damage = Math.floor(Math.random() * 10) + 1;
-    const weight = Math.floor(Math.random() * 3) + 1;
-    const price = Math.floor(damage / weight) * 10;
+    const modifier = this.getModifier(rank) || "";
+    const name = `${modifier} sword`;
+    const damage = this.roll(10) + 1;
+    const weight = this.roll(3) + 1;
+    const price = 10;
     const newItem = {
       name: name,
       level: level,
@@ -53,7 +62,7 @@ class App extends Component {
       rank: rank,
       weight: weight,
       price: price,
-      modifier: { strength: 1 },
+      bonus: {},
       type: 0
     };
     console.log(newItem["name"]);

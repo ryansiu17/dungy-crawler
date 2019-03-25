@@ -44,6 +44,7 @@ class Item extends Component {
               <Stat>{this.props.weapon.name || "noname"}</Stat>
               <Stat>dmg - {this.props.weapon.damage || 0}</Stat>
               <Stat>wgt - {this.props.weapon.weight || 0}</Stat>
+              <Stat>val - ${this.props.weapon.price}</Stat>
             </div>
           )}
         </Tooltip>
