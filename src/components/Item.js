@@ -5,6 +5,7 @@ import Image from "./Image";
 
 const Wrapper = styled.div`
   width: ${props => props.size}rem;
+  position: relative;
 `;
 
 const Tooltip = styled.div`
@@ -17,6 +18,7 @@ const Tooltip = styled.div`
   padding-right: 0.3rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   position: absolute;
+  bottom: 0;
   background-color: black;
   z-index: 3;
   overflow: hidden;

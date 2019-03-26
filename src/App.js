@@ -8,7 +8,11 @@ import Progress from "./components/Progress";
 import Image from "./components/Image";
 import Monster from "./components/Monster";
 import Item from "./components/Item";
-import { weaponAdjectives } from "./constants/Helpers";
+import {
+  weaponAdjectives,
+  weaponRankColor,
+  materials
+} from "./constants/Helpers";
 
 const uuidv4 = require("uuid/v4");
 class App extends Component {
@@ -40,23 +44,37 @@ class App extends Component {
       : 5;
   };
 
-  getModifier = rank => {
-    const chance = this.roll(100);
-    return chance <= 40 + 5 * rank
-      ? weaponAdjectives[rank][
-          Math.floor(Math.random() * weaponAdjectives[rank].length)
-        ]
-      : false;
+  getWeaponRankColor = rank => {
+    const color = weaponRankColor[rank];
+    return color;
   };
+  getModifier = rank => {
+    const chance = rank === 6 ? 100 : this.roll(100);
+    const mod =
+      chance <= 40 + 5 * rank
+        ? weaponAdjectives[rank][
+            Math.floor(Math.random() * weaponAdjectives[rank].length)
+          ]
+        : false;
+    return mod;
+  };
+
+  getMaterial = rank => {
+    return materials[rank][Math.floor(Math.random() * materials[rank].length)];
+  };
+
   makeWeapon = level => {
     const rank = this.getRank(level);
     const modifier = this.getModifier(rank) || "";
-    const name = `${modifier} sword`;
+    const material = this.getMaterial(rank);
+    const name = `${modifier} ${material} sword`;
     const damage = this.roll(10) + 1;
+    const color = this.getWeaponRankColor(rank);
     const weight = this.roll(3) + 1;
     const price = 10;
     const newItem = {
       name: name,
+      color: color,
       level: level,
       damage: damage,
       rank: rank,
@@ -65,7 +83,6 @@ class App extends Component {
       bonus: {},
       type: 0
     };
-    console.log(newItem["name"]);
     return newItem;
   };
   addItemToInventory = item => {
@@ -109,7 +126,7 @@ class App extends Component {
         {this.state.inventory.map(x => (
           <Item
             key={uuidv4()}
-            color={"dodgerblue"}
+            color={x.color}
             weapon={x}
             size={4}
             src={sword}
