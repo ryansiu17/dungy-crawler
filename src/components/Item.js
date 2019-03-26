@@ -9,9 +9,8 @@ const Wrapper = styled.div`
 
 const Tooltip = styled.div`
   opacity: 0;
-  display: none;
   border-radius: 4px;
-  min-height: ${props => props.size * 1.5}rem;
+  height: 0;
   min-width: ${props => props.size * 1.5}rem;
   margin: 0.1rem;
   margin-left: ${props => props.size + 0.3}rem;
@@ -20,12 +19,14 @@ const Tooltip = styled.div`
   position: absolute;
   background-color: black;
   z-index: 3;
+  overflow: hidden;
   font-size: 0.8rem;
   color: white;
-  transition: all 0.3s;
+  transition: all 0.2s;
   ${Wrapper}:hover & {
+    min-height: ${props => props.size * 1.5}rem;
+    height: auto;
     opacity: 1;
-    display: block;
   }
 `;
 

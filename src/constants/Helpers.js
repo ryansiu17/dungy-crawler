@@ -16,3 +16,12 @@ export const weaponAdjectives = [
     "venomous"
   ]
 ];
+
+export const weaponRankColor = [
+  "#7f4823",
+  "#4d7f22",
+  "#266493",
+  "#613bcc",
+  "#b52741",
+  "#eae741"
+];
