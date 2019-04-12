@@ -6,6 +6,7 @@ import shortsword from "./assets/items/weapons/item_shortsword.png";
 import Button from "./components/Button";
 import Progress from "./components/Progress";
 import Image from "./components/Image";
+import Text from "./components/Text";
 import Monster from "./components/Monster";
 import Item from "./components/Item";
 import {
@@ -112,7 +113,7 @@ class App extends Component {
         >
           Add Item
         </Button>
-
+        <Text>Hello this is a text box filled with a lot of text</Text>
         <Monster
           level={13}
           size={10}
