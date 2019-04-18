@@ -26,6 +26,7 @@ Wrapper.defaultProps = {
 
 const Arrow = styled.img`
   position: absolute;
+  border-radius: 45%;
   width: 8%;
   height: auto;
   bottom: 0px;

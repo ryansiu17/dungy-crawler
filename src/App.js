@@ -21,18 +21,26 @@ class App extends Component {
     inventory: []
   };
   componentDidMount() {
-    console.log(this.getRank(0));
-    console.log(this.getRank(11));
-    console.log(this.getRank(19));
-    console.log(this.getRank(26));
-    console.log(this.getRank(31));
-    console.log(this.getRank(41));
+    console.log(this.exp(2));
+    console.log(this.level(2829));
   }
 
+  // get required xp to hit level
+  exp = level => {
+    return Math.floor(1000 * Math.pow(level, 1.5));
+  };
+
+  // get level depending on curr exp
+  level = exp => {
+    return Math.floor(Math.pow(exp / 1000, 1 / 1.5));
+  };
+
+  // returns random number from 0 to outOf
   roll = outOf => {
     return Math.floor(Math.random() * outOf);
   };
 
+  // returns rank based on current level
   getRank = level => {
     return level >= 0 && level <= 10
       ? 0
@@ -47,11 +55,13 @@ class App extends Component {
       : 5;
   };
 
+  // returns color of weapon based on rank
   getWeaponRankColor = rank => {
     const color = weaponRankColor[rank];
     return color;
   };
 
+  // returns modifier based on rank
   getModifier = rank => {
     const chance = rank === 6 ? 100 : this.roll(100);
     const mod =
@@ -61,10 +71,12 @@ class App extends Component {
     return mod;
   };
 
+  // returns material type based on rank
   getMaterial = rank => {
     return materials[rank][this.roll(materials[rank].length)];
   };
 
+  // returns a new weapon based on level
   makeWeapon = level => {
     const rank = this.getRank(level);
     const modifier = this.getModifier(rank) || "";
@@ -88,6 +100,7 @@ class App extends Component {
     return newItem;
   };
 
+  // adds an item object to inventory
   addItemToInventory = item => {
     console.log(item);
     const newInv = [...this.state.inventory, item];
