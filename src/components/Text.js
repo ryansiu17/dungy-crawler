@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { lighten, darken } from "polished";
+import { darken } from "polished";
 import nextArrow from "../assets/ui/nextArrow.png";
 const Wrapper = styled.div`
   background-color: ${props => props.color || props.theme.primaryBackground};
@@ -28,7 +28,7 @@ const Arrow = styled.img`
   position: absolute;
   width: 8%;
   height: auto;
-  bottom: 2px;
+  bottom: 0px;
   right: 10px;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   &:hover {
@@ -50,11 +50,14 @@ Arrow.defaultProps = {
   }
 };
 
+const TextBox = styled.div`
+  margin-bottom: 3%;
+`;
 class Text extends Component {
   render() {
     return (
       <Wrapper color={this.props.color}>
-        {this.props.children}
+        <TextBox>{this.props.children}</TextBox>
         <Arrow src={nextArrow} />
       </Wrapper>
     );

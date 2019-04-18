@@ -28,9 +28,11 @@ class App extends Component {
     console.log(this.getRank(31));
     console.log(this.getRank(41));
   }
+
   roll = outOf => {
     return Math.floor(Math.random() * outOf);
   };
+
   getRank = level => {
     return level >= 0 && level <= 10
       ? 0
@@ -49,19 +51,18 @@ class App extends Component {
     const color = weaponRankColor[rank];
     return color;
   };
+
   getModifier = rank => {
     const chance = rank === 6 ? 100 : this.roll(100);
     const mod =
       chance <= 40 + 5 * rank
-        ? weaponAdjectives[rank][
-            Math.floor(Math.random() * weaponAdjectives[rank].length)
-          ]
+        ? weaponAdjectives[rank][this.roll(weaponAdjectives[rank].length)]
         : false;
     return mod;
   };
 
   getMaterial = rank => {
-    return materials[rank][Math.floor(Math.random() * materials[rank].length)];
+    return materials[rank][this.roll(materials[rank].length)];
   };
 
   makeWeapon = level => {
@@ -86,6 +87,7 @@ class App extends Component {
     };
     return newItem;
   };
+
   addItemToInventory = item => {
     console.log(item);
     const newInv = [...this.state.inventory, item];
@@ -93,6 +95,7 @@ class App extends Component {
       inventory: newInv
     });
   };
+
   render() {
     return (
       <div className="app">
@@ -106,14 +109,16 @@ class App extends Component {
         <Button
           color="seagreen"
           onClick={() =>
-            this.addItemToInventory(
-              this.makeWeapon(Math.floor(Math.random() * 50))
-            )
+            this.addItemToInventory(this.makeWeapon(this.roll(50)))
           }
         >
           Add Item
         </Button>
-        <Text>Hello this is a text box filled with a lot of text</Text>
+        <Text>
+          Hello this is a text box filled with a lot of text Hello this is a
+          text box filled with a lot of text Hello this is a text box filled
+          with a lot of text Hello this is a text box filled with a lot of text
+        </Text>
         <Monster
           level={13}
           size={10}
