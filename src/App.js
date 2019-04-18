@@ -18,7 +18,24 @@ import {
 const uuidv4 = require("uuid/v4");
 class App extends Component {
   state = {
-    inventory: []
+    player: {
+      experience: 0,
+      level: 0,
+      stats: {
+        strength: 0,
+        speed: 0,
+        health: 0
+      },
+      inventory: [],
+      equipped: {
+        helmet: null,
+        body: null,
+        ring: null,
+        amulet: null,
+        weapon: null,
+        shield: null
+      }
+    }
   };
   componentDidMount() {
     console.log(this.exp(2));
@@ -103,9 +120,9 @@ class App extends Component {
   // adds an item object to inventory
   addItemToInventory = item => {
     console.log(item);
-    const newInv = [...this.state.inventory, item];
+    const newInv = [...this.state.player.inventory, item];
     this.setState({
-      inventory: newInv
+      player: { inventory: newInv }
     });
   };
 
@@ -116,7 +133,7 @@ class App extends Component {
           Slime
         </Image>
         <Progress color={"red"} value={3} total={10} />
-        <Button onClick={() => console.log(this.state.inventory)}>
+        <Button onClick={() => console.log(this.state.player.inventory)}>
           Print Inv
         </Button>
         <Button
@@ -142,7 +159,7 @@ class App extends Component {
         >
           Slime
         </Monster>
-        {this.state.inventory.map(x => (
+        {this.state.player.inventory.map(x => (
           <Item
             key={uuidv4()}
             color={x.color}
